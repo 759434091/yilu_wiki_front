@@ -1,31 +1,47 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <navigation/>
+        <router-view/>
     </div>
-    <router-view/>
-  </div>
 </template>
 
+<script>
+    import navigation from '@/components/Navigation.vue'
+
+    export default {
+        name: 'app',
+        components: {navigation}
+    }
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+    html {
+        background-color: #0d0d0d;
+        font-family: Roboto, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Helvetica, Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    body {
+        margin: 0;
+    }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+    .markdown {
+        margin-top: 100px;
+        color: #fafafa;
+    }
+
+    .markdown h1 {
+        font-size: 5rem;
+        font-weight: normal;
+    }
+
+    .markdown h3 {
+        font-size: 3rem;
+        font-weight: normal;
+    }
+
+    .markdown p {
+        margin-left: 0.5rem;
+    }
 </style>
