@@ -1,6 +1,5 @@
-<!--suppress ALL -->
 <template>
-    <div class="ttr">
+    <div class="pg">
         <div class="markdown" v-html="htmlContent"></div>
     </div>
 </template>
@@ -9,14 +8,9 @@
     import showdown from 'showdown'
 
     export default {
-        name: "tutorial",
-        data() {
-            return {
-                ttrPageId: 1,
-                htmlContent: '',
-                timer: null,
-                progress: 0
-            }
+        name: "page",
+        props: {
+            ypId: String
         },
         created() {
             this.$store.commit('startLoading')
@@ -30,8 +24,9 @@
                 _this.$store.commit('setLoadingProgress', _this.progress);
             }, 200)
 
+            const ypId = parseInt(this.ypId)
             this.$request
-                .get(`/pages/${this.ttrPageId}`)
+                .get(`/pages/${ypId}`)
                 .then(res => {
                     const converter = new showdown.Converter()
                     this.htmlContent = converter.makeHtml(res.data.ypContent)
@@ -44,6 +39,11 @@
                     this.$store.commit('stopLoading');
                 })
         },
+        data() {
+            return {
+                htmlContent: null
+            }
+        },
         beforeDestroy() {
             this.$store.commit('stopLoading');
         }
@@ -51,21 +51,23 @@
 </script>
 
 <style scoped>
-    .ttr {
+    .pg {
         width: 55%;
         margin: auto;
+        padding-bottom: 10%;
     }
 
-    @media screen and (max-width: 480px) {
-        .ttr {
-            width: 90%;
+    @media screen and (max-width: 1024px) {
+        .pg {
+            width: 80%;
             margin: auto;
         }
     }
 
-    @media screen and (max-width: 1024px) {
-        .ttr {
-            width: 80%;
+
+    @media screen and (max-width: 480px) {
+        .pg {
+            width: 95%;
             margin: auto;
         }
     }

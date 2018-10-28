@@ -24,6 +24,10 @@
 
     body {
         margin: 0;
+        overflow: auto;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
     }
 
     .markdown {
@@ -43,6 +47,10 @@
 
     .markdown p {
         margin-left: 0.5rem;
+    }
+
+    .markdown img {
+        width: 100%;
     }
 
     @media screen and (max-width: 480px) {

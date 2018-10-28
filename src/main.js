@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import request from './request'
 
-Vue.prototype.request = request
+Vue.prototype.$request = request
 
 Vue.config.productionTip = false
 

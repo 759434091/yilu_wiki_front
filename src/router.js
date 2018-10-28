@@ -29,6 +29,12 @@ export default new Router({
             component: () => import( './views/Tutorial.vue')
         },
         {
+            path: '/pages/:ypId',
+            name: 'page',
+            props: true,
+            component: () => import( './views/Page.vue')
+        },
+        {
             path: '*',
             name: 'not_found',
             component: () => import( './views/NotFound.vue')

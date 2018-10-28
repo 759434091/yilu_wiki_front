@@ -67,6 +67,9 @@
         position: fixed;
         top: 0;
         width: 100vw;
+        background-color: #0d0d0d;
+        box-shadow: 0 1px 5px 1px #000000;
+        z-index: 9999;
     }
 
     .idx_nav_ul {
@@ -107,5 +110,21 @@
         border: 1.5px solid #c9c9c9;
         border-radius: 1.5px;
         transition: width 200ms;
+    }
+
+
+    @media screen and (max-width: 480px) {
+        .idx_nav_ul {
+            height: 45px;
+        }
+
+        .idx_nav_li {
+            font-size: 1rem;
+            line-height: 45px;
+        }
+        .loading {
+            border: 1px solid #c9c9c9;
+            border-radius: 1px;
+        }
     }
 </style>
