@@ -56,16 +56,16 @@
         padding-bottom: 10%;
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 1024px) {
         .it {
-            width: 90%;
+            width: 80%;
             margin: auto;
         }
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 480px) {
         .it {
-            width: 80%;
+            width: 90%;
             margin: auto;
         }
     }

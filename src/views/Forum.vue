@@ -1,7 +1,7 @@
 <template>
     <div class="not-found">
         <button @click="doLogin()">Login</button>
-        <h2 class="brand">暂未开放，敬请期待</h2>
+        <h2 class="brand">暂未开放，等王志远</h2>
     </div>
 </template>
 
