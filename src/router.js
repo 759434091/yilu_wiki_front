@@ -35,6 +35,12 @@ export default new Router({
             component: () => import( './views/Page.vue')
         },
         {
+            path: '/github_callback',
+            name: 'githubCallback',
+            props: true,
+            component: () => import( './views/GithubCallback.vue')
+        },
+        {
             path: '*',
             name: 'not_found',
             component: () => import( './views/NotFound.vue')

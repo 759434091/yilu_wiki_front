@@ -45,12 +45,22 @@
         font-weight: normal;
     }
 
+    .markdown h4 {
+        font-size: 2rem;
+        font-weight: normal;
+    }
+
     .markdown p {
         margin-left: 0.5rem;
     }
 
     .markdown img {
-        width: 100%;
+        max-width: 100%;
+        max-height: 480px;
+    }
+
+    .markdown a {
+        color: #fafafa;
     }
 
     @media screen and (max-width: 480px) {
@@ -65,6 +75,11 @@
 
         .markdown h3 {
             font-size: 2rem;
+            font-weight: normal;
+        }
+
+        .markdown h4 {
+            font-size: 1.5rem;
             font-weight: normal;
         }
 

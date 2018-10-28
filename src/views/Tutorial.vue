@@ -54,6 +54,7 @@
     .ttr {
         width: 55%;
         margin: auto;
+        padding-bottom: 10%;
     }
 
     @media screen and (max-width: 480px) {

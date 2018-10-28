@@ -36,7 +36,7 @@
         },
         data() {
             return {
-                activeIndex: 'home',
+                activeIndex: null,
                 widthstyle: '',
                 navRoutes: [
                     {
@@ -58,6 +58,12 @@
                 ]
             }
         },
+        created() {
+            if ('page' === this.$route.name)
+                this.activeIndex = 'tutorial'
+            else
+                this.activeIndex = this.$route.name
+        }
     }
 </script>
 
@@ -112,7 +118,6 @@
         transition: width 200ms;
     }
 
-
     @media screen and (max-width: 480px) {
         .idx_nav_ul {
             height: 45px;
@@ -122,6 +127,7 @@
             font-size: 1rem;
             line-height: 45px;
         }
+
         .loading {
             border: 1px solid #c9c9c9;
             border-radius: 1px;
