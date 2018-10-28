@@ -14,9 +14,24 @@ export default new Router({
             component: Home
         },
         {
+            path: '/intro',
+            name: 'intro',
+            component: () => import( './views/Intro.vue')
+        },
+        {
+            path: '/forum',
+            name: 'forum',
+            component: () => import( './views/Forum.vue')
+        },
+        {
             path: '/tutorial',
             name: 'tutorial',
             component: () => import( './views/Tutorial.vue')
+        },
+        {
+            path: '*',
+            name: 'not_found',
+            component: () => import( './views/NotFound.vue')
         }
     ]
 })

@@ -1,20 +1,17 @@
 <template>
-    <div class="home">
-        <h1 class="brand">YILU STUDIO</h1>
+    <div class="not-found">
+        <h2 class="brand">PAGE NOT FOUND</h2>
     </div>
 </template>
 
 <script>
-    // @ is an alias to /src
-
     export default {
-        name: 'home',
-        components: {}
+        name: "NotFound"
     }
 </script>
 
 <style scoped>
-    .home {
+    .not-found {
         display: flex;
         height: 100vh;
         width: 100vw;
@@ -25,14 +22,16 @@
 
     .brand {
         margin: 0;
-        font-size: 10rem;
+        font-size: 5rem;
         text-align: center;
+        font-weight: normal;
         color: #fafafa;
     }
 
+
     @media screen and (max-width: 480px) {
         .brand {
-            font-size: 4rem;
+            font-size: 3rem;
         }
     }
 </style>

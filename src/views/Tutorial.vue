@@ -57,4 +57,18 @@
         width: 55%;
         margin: auto;
     }
+
+    @media screen and (max-width: 480px) {
+        .ttr {
+            width: 90%;
+            margin: auto;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .ttr {
+            width: 80%;
+            margin: auto;
+        }
+    }
 </style>

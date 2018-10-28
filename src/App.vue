@@ -44,4 +44,24 @@
     .markdown p {
         margin-left: 0.5rem;
     }
+
+    @media screen and (max-width: 480px) {
+        .markdown {
+            margin-top: 80px;
+        }
+
+        .markdown h1 {
+            font-size: 3rem;
+            font-weight: normal;
+        }
+
+        .markdown h3 {
+            font-size: 2rem;
+            font-weight: normal;
+        }
+
+        .markdown p {
+            margin-left: 0.2rem;
+        }
+    }
 </style>

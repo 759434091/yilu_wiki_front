@@ -3,7 +3,8 @@
         <div class="loading" v-show="loading.display" :style="widthstyle"></div>
         <ul class="idx_nav_ul">
             <li class="idx_nav_li" v-for="route of navRoutes" :key="route.name">
-                <router-link :to="route.path" v-text="route.name"></router-link>
+                <router-link :to="route.path" v-text="route.name"
+                             :style="activeIndex === route.name.toLocaleLowerCase() ? 'border-bottom: 3px solid #fafafa;' : ''"></router-link>
             </li>
         </ul>
     </nav>
@@ -20,6 +21,12 @@
             })
         },
         watch: {
+            $route(to) {
+                if ('page' === to.name)
+                    this.activeIndex = 'tutorial'
+                else
+                    this.activeIndex = to.name
+            },
             'loading.progress'(progress) {
                 if (0 === progress) {
                     this.widthstyle = `width: 0; transaction: none;`
@@ -29,6 +36,7 @@
         },
         data() {
             return {
+                activeIndex: 'home',
                 widthstyle: '',
                 navRoutes: [
                     {
@@ -42,6 +50,10 @@
                     {
                         path: '/tutorial',
                         name: 'TUTORIAL'
+                    },
+                    {
+                        path: '/forum',
+                        name: 'FORUM'
                     }
                 ]
             }
