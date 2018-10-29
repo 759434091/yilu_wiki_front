@@ -40,6 +40,11 @@
         font-weight: normal;
     }
 
+    .markdown h2 {
+        font-size: 4rem;
+        font-weight: normal;
+    }
+
     .markdown h3 {
         font-size: 3rem;
         font-weight: normal;
