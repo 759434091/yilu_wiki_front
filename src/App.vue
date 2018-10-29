@@ -65,6 +65,9 @@
 
     .markdown pre {
         margin-left: 0.5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
     }
 
     .markdown code {
