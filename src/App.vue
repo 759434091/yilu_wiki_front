@@ -76,6 +76,10 @@
     }
 
     .markdown code {
+        padding: 0.5rem;
+    }
+
+    .markdown pre code {
         padding: 1rem;
         border-radius: 5px;
     }
