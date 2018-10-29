@@ -19,33 +19,21 @@
             }
         },
         created() {
-            this.$store.commit('startLoading')
-            const _this = this
-            this.timer = setInterval(() => {
-                _this.progress += 10;
-                if (_this.progress >= 100) {
-                    clearInterval(_this.timer)
-                    return;
-                }
-                _this.$store.commit('setLoadingProgress', _this.progress);
-            }, 200)
+            this.$store.dispatch('startLoading')
+                .then(() => {
+                    this.$request
+                        .get(`/pages/${this.ttrPageId}`)
+                        .then(res => {
+                            this.$store.commit('finishLoading');
+                            const converter = new showdown.Converter()
+                            this.htmlContent = converter.makeHtml(res.data.ypContent)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            this.$store.commit('finishLoading');
+                        })
+                })
 
-            this.$request
-                .get(`/pages/${this.ttrPageId}`)
-                .then(res => {
-                    const converter = new showdown.Converter()
-                    this.htmlContent = converter.makeHtml(res.data.ypContent)
-                    this.$store.commit('setLoadingProgress', _this.progress);
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-                .finally(() => {
-                    this.$store.commit('stopLoading');
-                })
-        },
-        beforeDestroy() {
-            this.$store.commit('stopLoading');
         }
     }
 </script>
