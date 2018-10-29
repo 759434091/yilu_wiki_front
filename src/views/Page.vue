@@ -19,12 +19,13 @@
                     this.$request
                         .get(`/pages/${ypId}`)
                         .then(res => {
-                            this.$store.commit('finishLoading');
                             const converter = new showdown.Converter()
                             this.htmlContent = converter.makeHtml(res.data.ypContent)
                         })
                         .catch(err => {
                             console.log(err)
+                        })
+                        .finally(() => {
                             this.$store.commit('finishLoading');
                         })
                 })
