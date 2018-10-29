@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
     <div class="ttr">
-        <div class="markdown" v-html="htmlContent"></div>
+        <div class="markdown" v-html="htmlContent" v-highlight></div>
     </div>
 </template>
 
@@ -55,6 +55,13 @@
         width: 55%;
         margin: auto;
         padding-bottom: 10%;
+    }
+
+    @media screen and (max-width: 1366px) {
+        .ttr {
+            width: 70%;
+            margin: auto;
+        }
     }
 
     @media screen and (max-width: 1024px) {

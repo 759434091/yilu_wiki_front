@@ -63,6 +63,15 @@
         color: #fafafa;
     }
 
+    .markdown pre {
+        margin-left: 0.5rem;
+    }
+
+    .markdown code {
+        padding: 1rem;
+        border-radius: 5px;
+    }
+
     @media screen and (max-width: 480px) {
         .markdown {
             margin-top: 80px;

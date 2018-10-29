@@ -1,6 +1,6 @@
 <template>
     <div class="pg">
-        <div class="markdown" v-html="htmlContent"></div>
+        <div class="markdown" v-html="htmlContent" v-highlight></div>
     </div>
 </template>
 
@@ -55,6 +55,13 @@
         width: 55%;
         margin: auto;
         padding-bottom: 10%;
+    }
+
+    @media screen and (max-width: 1366px) {
+        .pg {
+            width: 70%;
+            margin: auto;
+        }
     }
 
     @media screen and (max-width: 1024px) {
