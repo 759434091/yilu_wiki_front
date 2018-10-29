@@ -90,6 +90,11 @@
             font-weight: normal;
         }
 
+        .markdown h2 {
+            font-size: 2.5rem;
+            font-weight: normal;
+        }
+
         .markdown h3 {
             font-size: 2rem;
             font-weight: normal;
