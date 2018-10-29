@@ -23,6 +23,8 @@ export default new Vuex.Store({
             clearInterval(timer)
             state.loading.progress = 100
             setTimeout(() => {
+                if (100 !== state.loading.progress)
+                    return
                 state.loading.display = false
                 state.loading.progress = 0
             }, 500)
