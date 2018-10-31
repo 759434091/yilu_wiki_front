@@ -18,11 +18,17 @@
                 return
             if (state !== this.state)
                 return
-
+                
             this.$request
                 .post(`/tokens/${code}`)
                 .then((res) => {
                     console.log(res)
+                    var yuInfo = {
+                        accessToken: 'Bearer '+res.data.accessToken,
+                        ywUser: res.data.ywUser,
+                        createDate: new Date()
+                    }
+                    localStorage.setItem('yuInfo', JSON.stringify(yuInfo));
                 })
                 .catch((err) => {
                     console.log(err)

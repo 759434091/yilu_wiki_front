@@ -35,10 +35,21 @@ export default new Router({
             component: () => import( './views/Page.vue')
         },
         {
+            path: '/fpage/:yfpId',
+            name: 'fpage',
+            props: true,
+            component: () => import( './views/Fpage.vue')
+        },
+        {
             path: '/github_callback',
             name: 'githubCallback',
             props: true,
             component: () => import( './views/GithubCallback.vue')
+        },
+        {
+            path: '/demo',
+            name: 'modal',
+            component: () =>import( './components/Modal.vue')
         },
         {
             path: '*',

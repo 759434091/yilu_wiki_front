@@ -3,8 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import request from './request'
+import custom from './custom'
 
 Vue.prototype.$request = request
+Vue.use(custom);
 
 Vue.config.productionTip = false
 
