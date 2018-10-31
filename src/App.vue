@@ -40,6 +40,11 @@
         font-weight: normal;
     }
 
+    .markdown h2 {
+        font-size: 4rem;
+        font-weight: normal;
+    }
+
     .markdown h3 {
         font-size: 3rem;
         font-weight: normal;
@@ -63,6 +68,22 @@
         color: #fafafa;
     }
 
+    .markdown pre {
+        margin-left: 0.5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+    }
+
+    .markdown code {
+        padding: 0.5rem;
+    }
+
+    .markdown pre code {
+        padding: 1rem;
+        border-radius: 5px;
+    }
+
     @media screen and (max-width: 480px) {
         .markdown {
             margin-top: 80px;
@@ -70,6 +91,11 @@
 
         .markdown h1 {
             font-size: 3rem;
+            font-weight: normal;
+        }
+
+        .markdown h2 {
+            font-size: 2.5rem;
             font-weight: normal;
         }
 

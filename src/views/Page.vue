@@ -1,6 +1,6 @@
 <template>
     <div class="pg">
-        <div class="markdown" v-html="htmlContent"></div>
+        <div class="markdown" v-html="htmlContent" v-highlight></div>
     </div>
 </template>
 
@@ -13,39 +13,27 @@
             ypId: String
         },
         created() {
-            this.$store.commit('startLoading')
-            const _this = this
-            this.timer = setInterval(() => {
-                _this.progress += 10;
-                if (_this.progress >= 100) {
-                    clearInterval(_this.timer)
-                    return;
-                }
-                _this.$store.commit('setLoadingProgress', _this.progress);
-            }, 200)
-
-            const ypId = parseInt(this.ypId)
-            this.$request
-                .get(`/pages/${ypId}`)
-                .then(res => {
-                    const converter = new showdown.Converter()
-                    this.htmlContent = converter.makeHtml(res.data.ypContent)
-                    this.$store.commit('setLoadingProgress', _this.progress);
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-                .finally(() => {
-                    this.$store.commit('stopLoading');
+            this.$store.dispatch('startLoading')
+                .then(() => {
+                    const ypId = parseInt(this.ypId)
+                    this.$request
+                        .get(`/pages/${ypId}`)
+                        .then(res => {
+                            const converter = new showdown.Converter()
+                            this.htmlContent = converter.makeHtml(res.data.ypContent)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                        .finally(() => {
+                            this.$store.commit('finishLoading');
+                        })
                 })
         },
         data() {
             return {
                 htmlContent: null
             }
-        },
-        beforeDestroy() {
-            this.$store.commit('stopLoading');
         }
     }
 </script>
@@ -57,13 +45,19 @@
         padding-bottom: 10%;
     }
 
+    @media screen and (max-width: 1366px) {
+        .pg {
+            width: 70%;
+            margin: auto;
+        }
+    }
+
     @media screen and (max-width: 1024px) {
         .pg {
             width: 80%;
             margin: auto;
         }
     }
-
 
     @media screen and (max-width: 480px) {
         .pg {

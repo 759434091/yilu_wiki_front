@@ -1,6 +1,6 @@
 <template>
     <div class="it">
-        <div class="markdown" v-html="htmlContent"></div>
+        <div class="markdown" v-html="htmlContent" v-highlight></div>
     </div>
 </template>
 
@@ -18,33 +18,23 @@
             }
         },
         created() {
-            this.$store.commit('startLoading')
-            const _this = this
-            this.timer = setInterval(() => {
-                _this.progress += 10;
-                if (_this.progress >= 100) {
-                    clearInterval(_this.timer)
-                    return;
-                }
-                _this.$store.commit('setLoadingProgress', _this.progress);
-            }, 200)
+            this.$store
+                .dispatch('startLoading')
+                .then(() => {
+                    this.$request
+                        .get(`/pages/${this.itPageId}`)
+                        .then(res => {
+                            const converter = new showdown.Converter()
+                            this.htmlContent = converter.makeHtml(res.data.ypContent)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                        .finally(() => {
+                            this.$store.commit('finishLoading');
+                        })
+                })
 
-            this.$request
-                .get(`/pages/${this.itPageId}`)
-                .then(res => {
-                    const converter = new showdown.Converter()
-                    this.htmlContent = converter.makeHtml(res.data.ypContent)
-                    this.$store.commit('setLoadingProgress', _this.progress);
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-                .finally(() => {
-                    this.$store.commit('stopLoading');
-                })
-        },
-        beforeDestroy() {
-            this.$store.commit('stopLoading');
         }
     }
 </script>
@@ -54,6 +44,13 @@
         width: 55%;
         margin: auto;
         padding-bottom: 10%;
+    }
+
+    @media screen and (max-width: 1366px) {
+        .it {
+            width: 70%;
+            margin: auto;
+        }
     }
 
     @media screen and (max-width: 1024px) {
