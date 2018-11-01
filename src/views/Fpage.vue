@@ -41,9 +41,12 @@
                     </p>
                 </li>
             </ul>
-            <span class="pageChange" @click="prePage">&lt; 上一页</span>
+            <span class="pageChange" v-show="page > 1" @click="prePage">&lt; 上一页</span>
             <span style="margin-left: 40%;">第 {{page}} 页</span>
-            <span class="pageChange" @click="nextPage" style="float: right;">下一页 &gt;</span>
+            <span class="pageChange"
+                  v-show="page < pageAmount"
+                  @click="nextPage"
+                  style="float: right;">下一页 &gt;</span>
         </div>
         <modal v-show="isVisible" @close="isVisible=false" @submit="submit()">
             <template slot="header">
@@ -93,15 +96,14 @@
         },
         methods: {
             getPost() {
-                this.$request({
-                    method: "get",
-                    url: `/posts/${this.yfpId}`,
-                    headers: {
-                        Authorization: this.yuInfo.accessToken
-                    }
-                })
+                this.$request
+                    .get(`/posts/${this.yfpId}`, {
+                        headers: {
+                            Authorization: this.yuInfo.accessToken
+                        }
+                    })
                     .then((response) => {
-                        var post = response.data;
+                        const post = response.data;
                         post.yfpUpdateTime = this.dateTrans(post.yfpUpdateTime);
                         this.post = post;
                     })
@@ -111,43 +113,27 @@
                     });
             },
             getReplies() {
-                this.$request({
-                    method: "get",
-                    url: `/posts/${this.yfpId}/replies?page=${this.page}&pageSize=${
-                        this.pageSize
-                        }`,
-                    headers: {
-                        Authorization: this.yuInfo.accessToken
-                    }
-                }).then(response => {
-                    var replies = response.data;
-                    replies.forEach(item => {
-                        item.yfrUpdateTime = this.dateTrans(item.yfrUpdateTime);
-                    });
-                    this.replies = replies;
-                })
+                this.$request
+                    .get(`/posts/${this.yfpId}/replies?page=${this.page}&pageSize=${this.pageSize}`, {
+                        headers: {
+                            Authorization: this.yuInfo.accessToken
+                        }
+                    })
+                    .then(response => {
+                        const replies = response.data.list;
+                        replies.forEach(item => {
+                            item.yfrUpdateTime = this.dateTrans(item.yfrUpdateTime);
+                        });
+                        this.replies = replies;
+                        this.pageAmount = response.data.pages;
+                    })
                     .catch(err => {
                         console.log(err);
                         alert("获取评论失败，请稍后再试...")
                     });
-                // 检测页码 后期去掉
-                this.$request({
-                    method: "get",
-                    url: `/posts/${this.yfpId}/replies?page=${this.page + 1}&pageSize=${
-                        this.pageSize
-                        }`,
-                    headers: {
-                        Authorization: this.yuInfo.accessToken
-                    }
-                }).then(response => {
-                    var replies = response.data;
-                    if (replies.length == 0) {
-                        this.pageAmount = this.page;
-                    }
-                });
             },
             createEditor() {
-                var editor = new E("#editor");
+                const editor = new E("#editor");
                 editor.customConfig.menus = [
                     "bold", // 粗体
                     "fontSize", // 字号
@@ -190,7 +176,7 @@
                     this.errors.push("文本内容(含符号)须在5-200个字符之间");
                     return;
                 }
-                var data = this.operateId
+                const data = this.operateId
                     ? {
                         yfrContent: this.editor.txt.html(),
                         yfrReplyTo: this.operateId
@@ -226,7 +212,7 @@
                     this.errors.push("文本内容(含符号)须在10-800个字符之间");
                     return;
                 }
-                var data = {
+                const data = {
                     yfpContent: this.editor.txt.html(),
                     yfpAbstract: this.editor.txt.text().length > 40 ? this.editor.txt.text().slice(0, 40) + "..." : this.editor.txt.text(),
                     yfpTitle: this.post.yfpTitle
@@ -257,9 +243,9 @@
                     this.errors.push("文本内容(含符号)须在5-200个字符之间");
                     return;
                 }
-                var yfrId = this.operateId;
+                const yfrId = this.operateId;
                 this.operateId = 0;
-                var data = {
+                const data = {
                     yfrContent: this.editor.txt.html()
                 };
                 this.$request({
@@ -281,8 +267,8 @@
                     });
             },
             delReply(yfrId) {
-                var con = confirm("确定删除此回复吗，删除后将无法恢复?")
-                if (con == true) {
+                const con = confirm("确定删除此回复吗，删除后将无法恢复?");
+                if (con === true) {
                     this.$request({
                         method: "delete",
                         url: `/posts/${this.yfpId}/replies/${yfrId}`,
@@ -301,7 +287,7 @@
                 }
             },
             prePage() {
-                if (this.page == 1) {
+                if (this.page === 1) {
                     alert("已是首页");
                     return;
                 }
@@ -309,7 +295,7 @@
                 this.getReplies();
             },
             nextPage() {
-                if (this.page == this.pageAmount) {
+                if (this.page === this.pageAmount) {
                     alert('已经是末页');
                     return;
                 }

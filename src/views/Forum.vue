@@ -79,62 +79,44 @@
         },
         methods: {
             doLogin() {
-                window.location.href = `https://github.com/login/oauth/authorize?client_id=${
-                    this.clientId
-                    }&redirect_uri=${this.redirectURI}&scope=${this.scopes}&state=${
-                    this.state
-                    }`;
+                window.location.href = `https://github.com/login/oauth/authorize?
+                client_id=${this.clientId}&
+                redirect_uri=${this.redirectURI}&
+                scope=${this.scopes}&
+                state=${this.state}`;
             },
             getposts() {
                 this.loading = true;
-                this.$request({
-                    method: "get",
-                    url: `/posts?page=${this.page}&pageSize=${this.pageSize}`,
-                    headers: {
-                        Authorization: this.yuInfo.accessToken
-                    }
-                })
+                this.$request
+                    .get(`/posts?page=${this.page}&pageSize=${this.pageSize}`, {
+                        headers: {
+                            Authorization: this.yuInfo.accessToken
+                        }
+                    })
                     .then(response => {
-                        var posts = response.data;
+                        const posts = response.data.list;
                         posts.forEach(item => {
                             item.yfpUpdateTime = this.dateTrans(item.yfpUpdateTime);
                         });
                         this.posts = this.posts.concat(posts);
-                        this.loading = false;
+                        this.pageAmount = response.data.pages
                     })
-                    .catch(function (error) {
+                    .catch(error => {
                         console.log(error);
                         alert("加载帖子失败,请稍后再试...");
-                    });
-                // 检测页码
-                this.$request({
-                    method: "get",
-                    url: `/posts?page=${this.page + 1}&pageSize=${this.pageSize}`,
-                    headers: {
-                        Authorization: this.yuInfo.accessToken
-                    }
-                }).then(response => {
-                    var posts = response.data;
-                    if (posts.length == 0) {
-                        this.pageAmount = this.page;
-                    }
-                });
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    })
             },
             insertPost() {
                 this.errors = [];
-                if (
-                    this.editor.txt.text().length < 10 ||
-                    this.editor.txt.text().length > 800
-                ) {
+                if (this.editor.txt.text().length < 10 || this.editor.txt.text().length > 800)
                     this.errors.push("文本内容(含符号)须在10-800个字符之间");
-                }
-                if (this.title.length < 5 || this.title.length > 60) {
+                if (this.title.length < 5 || this.title.length > 60)
                     this.errors.push("帖子标题(含字符)须在5-60个字符之间");
-                }
-                if (this.errors.length) {
-                    return;
-                }
-                var data = {
+                if (this.errors.length) return;
+                const data = {
                     yfpContent: this.editor.txt.html(),
                     yfpTitle: this.title,
                     yfpAbstract:
@@ -164,8 +146,8 @@
                     });
             },
             deletePost(yfpId) {
-                var con = confirm("确定删除此帖子吗，删除后将无法恢复?");
-                if (con == true) {
+                const con = confirm("确定删除此帖子吗，删除后将无法恢复?");
+                if (con === true) {
                     this.$request({
                         method: "delete",
                         url: `/posts/${yfpId}`,
@@ -185,7 +167,7 @@
                 }
             },
             createEditor() {
-                var editor = new E("#editor");
+                const editor = new E("#editor");
                 editor.customConfig.menus = [
                     "bold", // 粗体
                     "fontSize", // 字号
@@ -228,12 +210,12 @@
             this.getposts();
             this.createEditor();
             window.onscroll = () => {
-                var scrollTop = document.documentElement.scrollTop; //距离顶部的距离
-                var windowHeight = document.documentElement.clientHeight; //浏览器的高度
-                var scrollHeight = document.documentElement.scrollHeight; ////总高度
-                if (scrollTop + windowHeight == scrollHeight) {
+                const scrollTop = document.documentElement.scrollTop; //距离顶部的距离
+                const windowHeight = document.documentElement.clientHeight; //浏览器的高度
+                const scrollHeight = document.documentElement.scrollHeight; ////总高度
+                if (scrollTop + windowHeight === scrollHeight) {
                     var scrollUp = () => {
-                        if (this.page == this.pageAmount) {
+                        if (this.page === this.pageAmount) {
                             alert("已无更多帖子")
                             return;
                         }

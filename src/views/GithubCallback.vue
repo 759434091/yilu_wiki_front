@@ -21,12 +21,11 @@
             this.$request
                 .post(`/tokens/${code}`)
                 .then((res) => {
-                    console.log(res)
-                    var yuInfo = {
-                        accessToken: 'Bearer '+res.data.accessToken,
+                    const yuInfo = {
+                        accessToken: 'Bearer ' + res.data.accessToken,
                         ywUser: res.data.ywUser,
                         createDate: new Date()
-                    }
+                    };
                     localStorage.setItem('yuInfo', JSON.stringify(yuInfo));
                     this.$router.push('/forum');
                 })

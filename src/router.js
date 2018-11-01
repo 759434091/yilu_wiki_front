@@ -11,7 +11,6 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            redirect: '/under_maintenance',
             component: Home
         },
         {
