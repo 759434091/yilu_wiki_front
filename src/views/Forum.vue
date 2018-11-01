@@ -79,11 +79,7 @@
         },
         methods: {
             doLogin() {
-                window.location.href = `https://github.com/login/oauth/authorize?
-                client_id=${this.clientId}&
-                redirect_uri=${this.redirectURI}&
-                scope=${this.scopes}&
-                state=${this.state}`;
+                window.location.href = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectURI}&scope=${this.scopes}&state=${this.state}`;
             },
             getposts() {
                 this.loading = true;
