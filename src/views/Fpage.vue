@@ -5,7 +5,8 @@
             <div v-html="post.yfpContent"></div>
             <p class="info" v-if="post.ywUser">
                 <img :src="post.ywUser.yuAvatarUrl">
-                <span> {{ post.ywUser.yuName }} &nbsp;&nbsp; 最后编辑于 {{post.yfpUpdateTime}}</span>
+                <span class="post-user" @click="goGithub(post.ywUser)"> {{ post.ywUser.yuName }}</span>
+                <span>最后编辑于 {{post.yfpUpdateTime}}</span>
                 <span style="float: right;">
               <span v-if="post.yuId==yuInfo.ywUser.yuId">
                 <a class="edit" @click="isVisible=true;mTitle='修改内容';editor.txt.html(post.yfpContent);submitStatus=2;">编辑</a>
@@ -22,7 +23,7 @@
                     <p v-html="item.yfrContent"></p>
                     <p class="info">
                         <img :src="item.ywUser.yuAvatarUrl">
-                        <span class="user"> {{ item.ywUser.yuName }} </span>
+                        <span class="user" @click="goGithub(item.ywUser)"> {{ item.ywUser.yuName }} </span>
                         <span> {{ item.yfrId }} 楼<span
                                 v-show="item.yfrReplyTo"> ( 回复{{item.yfrReplyTo}}楼 ) </span> </span>
                         <span class="datetime">最后编辑于 {{ item.yfrUpdateTime }}</span>
@@ -314,6 +315,9 @@
                 }
                 this.page++;
                 this.getReplies();
+            },
+            goGithub(ywUser) {
+                document.location.href = ywUser.yuHtmlUrl
             }
         },
         created() {
@@ -364,6 +368,15 @@
         padding: 0 20px 0 20px;
     }
 
+    .post-user {
+        margin-right: 10px;
+    }
+
+    .post-user:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
     .info {
         color: #839192;
     }
@@ -387,6 +400,11 @@
 
     .reply .user {
         margin: 0 10px 0 0;
+    }
+
+    .reply .user:hover {
+        cursor: pointer;
+        text-decoration: underline;
     }
 
     .reply .datetime {

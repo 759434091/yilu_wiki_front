@@ -11,6 +11,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
+            redirect: '/under_maintenance',
             component: Home
         },
         {
@@ -49,7 +50,12 @@ export default new Router({
         {
             path: '/demo',
             name: 'modal',
-            component: () =>import( './components/Modal.vue')
+            component: () => import( './components/Modal.vue')
+        },
+        {
+            path: '/under_maintenance',
+            name: 'under_maintenance',
+            component: () => import( './views/UnderMaintenance.vue')
         },
         {
             path: '*',
