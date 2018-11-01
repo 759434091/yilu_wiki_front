@@ -13,4 +13,4 @@ module.exports = {
             'vue-router': 'VueRouter'
         }
     }
-}
+};
