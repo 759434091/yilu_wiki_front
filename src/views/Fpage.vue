@@ -289,7 +289,7 @@
                             Authorization: this.yuInfo.accessToken
                         }
                     })
-                        .then((response) => {
+                        .then(() => {
                             alert("删除成功")
                             this.getReplies();
                         })

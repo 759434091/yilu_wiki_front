@@ -36,22 +36,22 @@
     }
 
     .markdown h1 {
-        font-size: 5rem;
-        font-weight: normal;
-    }
-
-    .markdown h2 {
-        font-size: 4rem;
-        font-weight: normal;
-    }
-
-    .markdown h3 {
         font-size: 3rem;
         font-weight: normal;
     }
 
-    .markdown h4 {
+    .markdown h2 {
         font-size: 2rem;
+        font-weight: normal;
+    }
+
+    .markdown h3 {
+        font-size: 1.8rem;
+        font-weight: normal;
+    }
+
+    .markdown h4 {
+        font-size: 1.5rem;
         font-weight: normal;
     }
 
