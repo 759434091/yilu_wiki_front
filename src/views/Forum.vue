@@ -9,7 +9,7 @@
                         <p>{{ item.yfpAbstract }}</p>
                         <p class="info">
                             <img :src="item.ywUser.yuAvatarUrl">
-                            <span class="user"> {{ item.ywUser.yuName }} </span>
+                            <span class="user" @click="goGithub(item.ywUser)"> {{ item.ywUser.yuName }} </span>
                             <span class="datetime">最后活跃于 {{ item.yfpUpdateTime }}</span>
                             <span v-if="item.yuId == yuInfo.ywUser.yuId" style="float: right;">
                               <a class="delete" @click="deletePost(item.yfpId)">删除</a>
@@ -212,6 +212,9 @@
                     fn();
                     this.lastTime = nowTime;
                 }
+            },
+            goGithub(ywUser) {
+                document.location.href = ywUser.yuHtmlUrl
             }
         },
         created() {
@@ -305,6 +308,11 @@
 
     .post .user {
         margin: 0 10px 0 0;
+    }
+
+    .post .user:hover {
+        cursor: pointer;
+        text-decoration: underline;
     }
 
     .post .datetime {
