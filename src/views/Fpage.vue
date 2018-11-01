@@ -99,7 +99,7 @@
                         Authorization: this.yuInfo.accessToken
                     }
                 })
-                    .then( (response) => {
+                    .then((response) => {
                         var post = response.data;
                         post.yfpUpdateTime = this.dateTrans(post.yfpUpdateTime);
                         this.post = post;
@@ -289,7 +289,7 @@
                             Authorization: this.yuInfo.accessToken
                         }
                     })
-                        .then( () => {
+                        .then(() => {
                             alert("删除成功")
                             this.getReplies();
                         })
