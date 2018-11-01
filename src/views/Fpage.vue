@@ -66,9 +66,8 @@
 </template>
 
 <script>
+    import E from "wangeditor";
     import Modal from "../components/Modal.vue";
-
-    var E = require("wangeditor");
 
     export default {
         name: "fpage",
