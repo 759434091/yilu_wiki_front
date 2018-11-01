@@ -6,12 +6,12 @@
 </template>
 
 <script>
-    import navigation from '@/components/Navigation.vue'
+    import navigation from '@/components/Navigation.vue';
 
     export default {
         name: 'app',
         components: {navigation}
-    }
+    };
 </script>
 
 <style>

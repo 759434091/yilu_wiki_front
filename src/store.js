@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-let timer = null
+let timer = null;
 
 export default new Vuex.Store({
     state: {
@@ -17,34 +17,34 @@ export default new Vuex.Store({
             state.loading = {
                 display: true,
                 progress: 0
-            }
+            };
         },
         finishLoading(state) {
-            clearInterval(timer)
-            state.loading.progress = 100
+            clearInterval(timer);
+            state.loading.progress = 100;
             setTimeout(() => {
                 if (100 < state.loading.progress)
-                    return
+                    return;
                 state.loading = {
                     display: false,
                     progress: 0
-                }
-            }, 500)
+                };
+            }, 500);
         }
     },
     actions: {
         startLoading({state}) {
-            clearInterval(timer)
+            clearInterval(timer);
             state.loading = {
                 display: true,
                 progress: 0
-            }
+            };
             timer = setInterval(() => {
-                state.loading.progress += 10
+                state.loading.progress += 10;
                 if (state.loading.progress >= 90) {
-                    clearInterval(timer)
+                    clearInterval(timer);
                 }
-            }, 200)
+            }, 200);
         }
     }
-})
+});

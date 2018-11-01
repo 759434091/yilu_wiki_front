@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import showdown from 'showdown'
+    import showdown from 'showdown';
 
     export default {
         name: "page",
@@ -13,23 +13,23 @@
             ypId: String
         },
         created() {
-            const ypId = parseInt(this.ypId)
+            const ypId = parseInt(this.ypId);
             this.$request
                 .get(`/pages/${ypId}`)
                 .then(res => {
-                    const converter = new showdown.Converter()
-                    this.htmlContent = converter.makeHtml(res.data.ypContent)
+                    const converter = new showdown.Converter();
+                    this.htmlContent = converter.makeHtml(res.data.ypContent);
                 })
                 .catch(err => {
-                    console.log(err)
-                })
+                    console.log(err);
+            });
         },
         data() {
             return {
                 htmlContent: null
-            }
+            };
         }
-    }
+    };
 </script>
 
 <style scoped>

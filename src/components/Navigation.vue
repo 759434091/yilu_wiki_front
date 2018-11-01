@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import {mapState} from 'vuex';
 
     export default {
         name: 'navigation',
@@ -23,15 +23,15 @@
         watch: {
             $route(to) {
                 if ('page' === to.name)
-                    this.activeIndex = 'tutorial'
+                    this.activeIndex = 'tutorial';
                 else
-                    this.activeIndex = to.name
+                    this.activeIndex = to.name;
             },
             'loading.progress'(progress) {
                 if (0 === progress) {
-                    this.widthstyle = `width: 0; transaction: none;`
+                    this.widthstyle = `width: 0; transaction: none;`;
                 }
-                this.widthstyle = `width: calc(100vw * ${progress / 100})`
+                this.widthstyle = `width: calc(100vw * ${progress / 100})`;
             }
         },
         data() {
@@ -56,15 +56,15 @@
                         name: 'FORUM'
                     }
                 ]
-            }
+            };
         },
         created() {
             if ('page' === this.$route.name)
-                this.activeIndex = 'tutorial'
+                this.activeIndex = 'tutorial';
             else
-                this.activeIndex = this.$route.name
+                this.activeIndex = this.$route.name;
         }
-    }
+    };
 </script>
 
 <style scoped>

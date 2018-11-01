@@ -7,7 +7,7 @@
 <script>
     export default {
         name: "UnderMaintenance"
-    }
+    };
 </script>
 
 <style scoped>
