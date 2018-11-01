@@ -18,7 +18,6 @@
                 return
             if (state !== this.state)
                 return
-                
             this.$request
                 .post(`/tokens/${code}`)
                 .then((res) => {
@@ -29,6 +28,7 @@
                         createDate: new Date()
                     }
                     localStorage.setItem('yuInfo', JSON.stringify(yuInfo));
+                    this.$route.push('/forum');
                 })
                 .catch((err) => {
                     console.log(err)
