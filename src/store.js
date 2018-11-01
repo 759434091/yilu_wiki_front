@@ -23,15 +23,18 @@ export default new Vuex.Store({
             clearInterval(timer)
             state.loading.progress = 100
             setTimeout(() => {
-                if (100 !== state.loading.progress)
+                if (100 < state.loading.progress)
                     return
-                state.loading.display = false
-                state.loading.progress = 0
+                state.loading = {
+                    display: false,
+                    progress: 0
+                }
             }, 500)
         }
     },
     actions: {
         startLoading({state}) {
+            clearInterval(timer)
             state.loading = {
                 display: true,
                 progress: 0

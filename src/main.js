@@ -8,8 +8,7 @@ import hljs from 'hljs'
 Vue.prototype.$request = request
 
 request.interceptors.request.use((config) => {
-    store
-        .dispatch('startLoading')
+    store.dispatch('startLoading')
     return config;
 }, (err) => {
     store.commit('finishLoading');
