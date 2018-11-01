@@ -28,7 +28,7 @@
                         createDate: new Date()
                     }
                     localStorage.setItem('yuInfo', JSON.stringify(yuInfo));
-                    this.$route.push('/forum');
+                    this.$router.push('/forum');
                 })
                 .catch((err) => {
                     console.log(err)
