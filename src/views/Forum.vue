@@ -286,7 +286,11 @@
         border: 1px solid white;
         padding: 0 15px 0 15px;
         width: 90%;
-        margin: 5px;
+        margin: 5px 5px 10px 5px;
+    }
+
+    .post:hover {
+        box-shadow: white 1px 1px 7px;
     }
 
     .post .info {
@@ -351,11 +355,12 @@
         background-color: transparent;
         border: white 1px solid;
         color: white;
-        border: none;
     }
 
-    .insert:hover {
+    .insert:hover, .insert:focus {
         cursor: pointer;
+        box-shadow: white 1px 1px 7px;
+        text-shadow: white 0 1px 7px;
     }
 
     #editor {
