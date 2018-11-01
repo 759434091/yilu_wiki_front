@@ -75,7 +75,7 @@
         width: 100vw;
         background-color: #0d0d0d;
         box-shadow: 0 1px 5px 1px #000000;
-        z-index: 9999;
+        z-index: 999;
     }
 
     .idx_nav_ul {
