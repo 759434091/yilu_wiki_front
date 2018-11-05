@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import showdown from 'showdown'
+    import showdown from 'showdown';
 
     export default {
         name: "tutorial",
@@ -16,20 +16,20 @@
                 htmlContent: '',
                 timer: null,
                 progress: 0
-            }
+            };
         },
         created() {
             this.$request
                 .get(`/pages/${this.ttrPageId}`)
                 .then(res => {
-                    const converter = new showdown.Converter()
-                    this.htmlContent = converter.makeHtml(res.data.ypContent)
+                    const converter = new showdown.Converter();
+                    this.htmlContent = converter.makeHtml(res.data.ypContent);
                 })
                 .catch(err => {
-                    console.log(err)
-                })
+                    console.log(err);
+            });
         }
-    }
+    };
 </script>
 
 <style scoped>

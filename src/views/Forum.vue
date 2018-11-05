@@ -19,7 +19,7 @@
                 </ul>
                 <loading v-if="loading" style="height: 70px;"></loading>
             </div>
-            <aside>
+            <aside class="forum-aside">
                 <!-- <button v-if="!yuInfo" class="login" @click="doLogin()">Login with Github</button> -->
                 <div class="yuInfo">
                     <img :src="this.yuInfo.ywUser.yuAvatarUrl">
@@ -209,10 +209,10 @@
             }
         },
         created() {
-            if (localStorage.getItem("yuInfo") == null) {
+            /*if (localStorage.getItem("yuInfo") == null) {
                 alert("请先使用Github账号登录");
                 this.doLogin();
-            }
+            }*/
             this.yuInfo = JSON.parse(localStorage.getItem("yuInfo")); // 后期待补充 校验
         },
         mounted() {
@@ -387,7 +387,7 @@
         color: #ec7063;
     }
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 768px) {
         .forum {
             color: white;
             margin: 100px 0 0 20px;
@@ -396,13 +396,6 @@
 
         .forum-brand {
             padding-left: 20px;
-        }
-
-        .insert {
-            position: fixed;
-            top: 60px;
-            right: 0;
-            width: 70px;
         }
 
         .content {
@@ -415,6 +408,27 @@
 
         .posts {
             width: 100%;
+        }
+
+        .posts ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .posts li {
+            width: 100%;
+            margin: 0 0 1rem 0;
+            padding: 0 1rem 0 1rem;
+        }
+
+        .forum-aside {
+            position: fixed;
+            top: 60px;
+            right: -10px;
+        }
+
+        .insert {
+            background-color: #000000;
         }
     }
 </style>
