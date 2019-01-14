@@ -12,7 +12,7 @@
             if (ticket == null || ticket === '')
                 document.location.href = `https://www.xsix103.cn/prac-manage/login`
             else
-                document.location.href = `https://www.xsix103.cn/prac-manage/ostecAuth?ST=${ticket}`
+                document.location.href = `https://www.xsix103.cn/prac-manage/ostecAuth?ticket=${ticket}`
 
         }
     }
