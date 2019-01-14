@@ -57,6 +57,11 @@ export default new Router({
             component: () => import( './views/UnderMaintenance.vue')
         },
         {
+            path: '/ostecAuth',
+            name: 'ostecAuth',
+            component: () => import( './views/OstecAuth.vue')
+        },
+        {
             path: '*',
             name: 'not_found',
             component: () => import( './views/NotFound.vue')
